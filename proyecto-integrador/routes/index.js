@@ -6,4 +6,6 @@ const controler = require("../controller/indexController")
 /* GET home page. */
 router.get("/", controler.index);
 
+
+
 module.exports = router;
