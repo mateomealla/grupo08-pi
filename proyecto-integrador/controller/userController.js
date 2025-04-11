@@ -5,7 +5,11 @@ const controladorUser = {
     },
     profile: function (req, res) {
         return res.render("profile");
+      },
+    register: function (req, res) {
+        return res.render("register");
       }
   };
+  
   
   module.exports = controladorUser;

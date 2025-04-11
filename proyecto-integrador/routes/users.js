@@ -6,5 +6,8 @@ const controler = require("../controller/userController")
 
 router.get("/login", controler.login);
 router.get("/profile", controler.profile);
+router.get("/register", controler.register);
+
+
 
 module.exports = router;
