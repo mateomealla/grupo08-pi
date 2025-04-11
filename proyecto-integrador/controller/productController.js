@@ -1,14 +1,14 @@
-
+const base = require("../db/base");
 
 const controlador = {
   index: function (req, res) {
-    return res.render("product");
+    return res.render("product", {usuario: base.usuario, id: req.params.id, productos: base.productos});
   },
   search: function (req, res) {
-    return res.render("search-results");
+    return res.render("search-results", {usuario: base.usuario});
   },
   productAdd: function (req, res) {
-    return res.render("product-add");
+    return res.render("product-add", {usuario: base.usuario});
   },
 };
 

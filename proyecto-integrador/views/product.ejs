@@ -4,9 +4,9 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link width="" rel="shortcut icon" href="./images/logo-mercado-liebre.jpg" />
-
-	<title> Mercado Liebre Argentina</title>
+	<link width="" rel="shortcut icon" href="/images/logosolo.svg" />
+	
+	<title> Papu Store</title>
 	<!-- Font Awesome Stylesheet -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
 	<!-- Bootstrap Grid Stylesheet -->
@@ -15,84 +15,70 @@
 	<link rel="stylesheet" href="/stylesheets/app.css" />
 </head>
 <body>
+	<!-- Header -->
 	<%- include('./partials/headerLogueado.ejs') %>
-	<!-- product detail -->
-	<div class="container products-wrapper">
-		<div class="d-flex align-items-center">
-			<h2 class="products-title">Nombre del producto</h2> 
-			<p class="product-detail-description">
-				<a href="/product/productadd">Editar</a>
-			</p>
-		</div>
-		<div class="product-detail">
-			<div class="row">
-				<article class="col-12 col-lg-8 product-detail-info">
-					<img src="./images/products/default-image.png" alt="" class="product-detail-img">
-					<p class="product-detail-description">
-						Descripción corta del producto. En la página principal solo se ven 2 líneas de estar descripción.Lorem ipsum dolor,
-						sit amet consectetur adipisicing elit. Tae ipsam amet eum, totam dolore libero illo unde? Consectetur dolorem neque
-						veritatis.</p>
-				</article>
-				<div class="col-12 col-lg-4">
-					<section class="comments">
-						<article>
-							<img src="https://via.placeholder.com/35" alt="">
-							<div class="data">
-								<p class="user">
-								<strong> <a href="/user/profile">Nombre usuario: </a> </strong>
-								 Texto del comentario que escribió el usuario Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora doloribus enim aspernatur fugit corrupti suscipit sit dolore magnam, praesentium explicabo inventore molestias facilis labore. Fugit ipsa mollitia odit inventore consequuntur.</p>
-							</div>
-						</article>
-						<article>
-							<img src="https://via.placeholder.com/35" alt="">
-							<div class="data">
-								<p class="user">
-									<strong> <a href="/user/profile">Nombre usuario: </a> </strong>
-									Texto del comentario que escribió el usuario Lorem ipsum dolor sit amet consectetur.</p>
-							</div>
-						</article>
-						<article>
-							<img src="https://via.placeholder.com/35" alt="">
-							<div class="data">
-								<p class="user">
-									<strong> <a href="/user/profile">Nombre usuario: </a> </strong>
-									Texto del comentario que escribió el usuario Lorem ipsum dolor sit amet consectetur adipisicing elit.
-									</p>
-							</div>
-						</article>
-						<article>
-							<img src="https://via.placeholder.com/35" alt="">
-							<div class="data">
-								<p class="user">
-									<strong> <a href="/user/profile">Nombre usuario: </a> </strong>
-									Texto del comentario que escribió el usuario Lorem ipsum dolor sit amet.</p>
-							</div>
-						</article>
-						<article>
-							<img src="https://via.placeholder.com/35" alt="">
-							<div class="data">
-								<p class="user">
-									<strong> <a href="/user/profile">Nombre usuario: </a> </strong>
-									Texto del comentario que escribió el usuario Lorem ipsum dolor sit amet consectetur adipisicing elit.
-									Tempora doloribus enim aspernatur fugit corrupti suscipit sit dolore</p>
-							</div>
-						</article>
+	<!-- Header -->
 
-					</section>
-					<form class="form" action="" method="POST">
-						<input class="form-input" type="text" value="" placeholder="Agregar comentario">
-						<button type="submit" class="buy-now-button">AGREGAR COMENTARIO</button>
-					</form>
-					<hr>
+	<!-- product detail -->
+<% for( let i = 0; i < productos.length; i++ ) { %>
+	<% if (productos[i].id == id) { %>
+
+		<div class="container products-wrapper">
+			<div class="d-flex align-items-center">
+				<h2 class="products-title"><%= productos[i].nombre %></h2> 
+				<p class="product-detail-description">
+					<a href="/product/productadd">Editar</a>
+				</p>
+			</div>
+			<div class="product-detail">
+				<div class="row">
+					<article class="col-12 col-lg-8 product-detail-info">
+						<figure class="product-detail-image-wrapper">
+						  <img src="<%= productos[i].imagen[0] %>" alt="<%= productos[i].nombre %>" class="product-detail-img imagen1">
+						  <% if (productos[i].imagen.length > 1 && productos[i].imagen.length <= 2) { %>
+						  <img src="<%= productos[i].imagen[1] %>" alt="<%= productos[i].nombre %>" class="product-detail-img imagen2">
+						  <%} else { %>
+							<img src="<%= productos[i].imagen[0] %>" alt="<%= productos[i].nombre %>" class="product-detail-img imagen1">
+						<% } %>
+						</figure>
+						<p class="product-detail-description">
+						  <%= productos[i].descripcion %>
+						</p>
+					  </article>
+					  
+					<div class="col-12 col-lg-4">
+						<section class="comments">
+							<% for( let b = 0; b < productos[i].comentarios.length; b++ ) { %>
+
+								<article>
+									<img src="<%= productos[i].comentarios[b].imagenDePerfil %>" alt="">
+									<div class="data">
+										<p class="user">
+										<strong> <a href="/user/profile"><%= productos[i].comentarios[b].nombreDeUsuario %> </a> </strong>
+										 <%= productos[i].comentarios[b].textoDelComentario %></p>
+									</div>
+								</article>
+							
+							<% } %>
+							
+						</section>
+						<form class="form" action="" method="POST">
+							<input class="form-input" type="text" value="" placeholder="Agregar comentario">
+							<button type="submit" class="buy-now-button">AGREGAR COMENTARIO</button>
+						</form>
+						<hr>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<!-- /product detail -->
+
+	 
+	<% } %>
+
+<% } %>
 
 	<!-- footer -->
 	<%- include('./partials/footer.ejs') %>
-
 	<!-- /footer -->
 
 </body>	

@@ -5,9 +5,9 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link width="" rel="shortcut icon" href="/images/logo-mercado-liebre.jpg" />
-
-	<title> Mercado Liebre Argentina</title>
+	<link width="" rel="shortcut icon" href="/images/logosolo.png" />
+	
+	<title> Papu Store</title>
 	<!-- Font Awesome Stylesheet -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
 	<!-- Bootstrap Grid Stylesheet -->
@@ -18,40 +18,36 @@
 </head>
 
 <body>
+	<!-- Header -->
 	<%- include('./partials/headerNoLogueado.ejs') %>
+	<!-- Header -->
 
 
 	<!-- Novedades -->
-	<div class="container products-wrapper">
-		<div class="row">
-			<div class="col-12">
-				<h2 class="products-title">Ingresar</h2>
-			</div>
-			<!-- Show the "ultimos" products -->
-			<form action="/"  method="get">
-			<div>
-				<label for="usuario">Usuario:</label>
-				<input type="email" name="usuario" id="usuario">
-			</div>
-			<div>
-			<label for="contraseña">Contraseña:</label>
-				<input type="password" name="Contraseña" id="contraseña">
-			</div>
-			<div>
-				<input type="checkbox" id="recordarme" name="recordarme">
-				<label for="recordarme">Recordarme</label>
-			  </div>
-			  <div>
-			  <button type="submit">Enviar</button>
-			</div>
 
+			<div class="login-container">
+				<h2 class="login-title">Ingresar</h2>
+				<form action="/" method="get" class="login-form">
+				  <label for="usuario">Usuario:</label>
+				  <input type="email" name="usuario" id="usuario" class="form-input">
+			  
+				  <label for="contraseña">Contraseña:</label>
+				  <input type="password" name="Contraseña" id="contraseña" class="form-input">
+			  
+				  <div class="checkbox-container">
+					<input type="checkbox" id="recordarme" name="recordarme">
+					<label for="recordarme">Recordarme</label>
+				  </div>
+			  
+				  <button type="submit" class="login-button">Enviar</button>
+				</form>
+		
+	</div>
+			  
 
-			</form>
-
-	<!-- footer -->
+	<!-- Footer -->
 	<%- include('./partials/footer.ejs') %>
-
-	<!-- /footer -->
+	<!-- Footer -->
 
 </body>
 
