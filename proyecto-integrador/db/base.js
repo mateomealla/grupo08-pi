@@ -5,7 +5,11 @@ const db = {
     contraseña: "papu123",
     fechaDeNacimiento: "1990-01-01",
     nroDeDocumento: 47200101,
-    fotoDePerfil: "/images/usuarios/perfil1.jpg",
+    fotoDePerfil: "/images/users/profile1.jpg",
+    productos: "10",
+    seguidores: "1027",
+    comentarios: "113"
+
   },
   productos: [
     {

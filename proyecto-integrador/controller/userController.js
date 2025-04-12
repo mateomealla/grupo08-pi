@@ -5,7 +5,7 @@ const controladorUser = {
       return res.render("login", {});
     },
     profile: function (req, res) {
-        return res.render("profile", {usuario: base.usuario});
+        return res.render("profile", {usuario: base.usuario, id: req.params.id, productos: base.productos});
       },
     register: function (req, res) {
         return res.render("register", {});
