@@ -16,7 +16,13 @@
 </head>
 <body>
 	<!-- Header -->
-	<%- include('./partials/headerLogueado.ejs') %>
+	<% if (logueado != true) { %>
+		<%- include('./partials/headerNoLogueado.ejs') %>
+	
+	 <% } else { %>
+		<%- include('./partials/headerLogueado.ejs') %>
+
+	<% } %>
 	<!-- Header -->
 
 	<!-- product detail -->

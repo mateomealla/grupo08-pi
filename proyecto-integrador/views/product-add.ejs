@@ -18,7 +18,13 @@
 
 <body>
 	<!-- Header -->
-	<%- include('./partials/headerLogueado.ejs') %>
+	<% if (logueado != true) { %>
+		<%- include('./partials/headerNoLogueado.ejs') %>
+	
+	 <% } else { %>
+		<%- include('./partials/headerLogueado.ejs') %>
+
+	<% } %>
 	<!-- /Header -->
 
 	<!-- Agregar Productos -->
@@ -35,7 +41,7 @@
 
 						
 						<label for="productImage">Imagen:</label>
-						<input type="file" id="productImage" name="productImage" class="form-input" value="">
+						<input type="text" id="productImage" name="productImage" class="form-input" value="">
 
 						<!-- Por si trabajamos con dobe imagen papu_store_db_pro.sql -->
 

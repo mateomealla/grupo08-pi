@@ -19,10 +19,15 @@
 
 <body>
 	<!-- Header -->
-	<%- include('./partials/headerNoLogueado.ejs') %>
+	
 	<!-- Header -->
+	 <% if (logueado != true) { %>
+		<%- include('./partials/headerNoLogueado.ejs') %>
+	
+	 <% } else { %>
+		<%- include('./partials/headerLogueado.ejs') %>
 
-
+	<% } %>
 	<!-- Login -->
 
 			<div class="login-container">
