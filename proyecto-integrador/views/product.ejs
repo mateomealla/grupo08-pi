@@ -34,6 +34,7 @@
 				<div class="row">
 					<article class="col-12 col-lg-8 product-detail-info">
 						<figure class="product-detail-image-wrapper">
+							<!-- En esta seccion me aseguro que haya 1 sola imagen, y si hay 2 hacer el efecto -->
 						  <img src="<%= productos[i].imagen[0] %>" alt="<%= productos[i].nombre %>" class="product-detail-img imagen1">
 						  <% if (productos[i].imagen.length > 1 && productos[i].imagen.length <= 2) { %>
 						  <img src="<%= productos[i].imagen[1] %>" alt="<%= productos[i].nombre %>" class="product-detail-img imagen2">

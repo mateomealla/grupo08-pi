@@ -105,7 +105,7 @@ const db = {
         "/images/products/notebook-lenovo-ideapad.webp",
         "/images/products/notebook-lenovo-ideapad-2.webp",
       ],
-      nombre: "Notebook Lenovo IdeaPad 3 15.6'' Ryzen 5",
+      nombre: "Notebook Lenovo IdeaPad 3 15.6 Ryzen 5",
       descripcion:
         "Portátil potente y versátil con procesador AMD Ryzen 5, ideal para trabajo y estudio diario. Diseñado para ofrecer un rendimiento excepcional, este producto combina durabilidad, eficiencia y una experiencia de usuario sobresaliente. Ideal para usuarios exigentes que valoran calidad y funcionalidad en su día a día.",
       descripcionCorta:
@@ -318,9 +318,9 @@ const db = {
       ],
       nombre: "Samsung Galaxy S24 Ultra",
       descripcion:
-        "Smartphone Android con cámara de 200 MP, pantalla AMOLED 6.8'' y S-Pen integrado. Diseñado para ofrecer un rendimiento excepcional, este producto combina durabilidad, eficiencia y una experiencia de usuario sobresaliente. Ideal para usuarios exigentes que valoran calidad y funcionalidad en su día a día.",
+        "Smartphone Android con cámara de 200 MP, pantalla AMOLED 6.8 y S-Pen integrado. Diseñado para ofrecer un rendimiento excepcional, este producto combina durabilidad, eficiencia y una experiencia de usuario sobresaliente. Ideal para usuarios exigentes que valoran calidad y funcionalidad en su día a día.",
       descripcionCorta:
-        "Smartphone Android con cámara de 200 MP, pantalla AMOLED 6.8''.",
+        "Smartphone Android con cámara de 200 MP, pantalla AMOLED 6.8.",
       comentarios: [
         {
           nombreDeUsuario: "delfina_romero",

@@ -39,6 +39,7 @@
 					<section class="product-box">
 						<a href="/product/details/<%= productos[i].id %>">
 							<figure class="product-box_image">
+								<!-- En esta seccion me aseguro que haya 1 sola imagen, y si hay 2 hacer el efecto -->
 								<img class="imagen1" src="<%= productos[i].imagen[0] %>" alt="<%= productos[i].nombre  %>">
 								<% if (productos[i].imagen.length > 1 && productos[i].imagen.length <= 2) { %>
 									<img class="imagen2" src="<%= productos[i].imagen[1] %>" alt="<%= productos[i].nombre  %>">
