@@ -2,7 +2,6 @@ const base = require("../db/base");
 const db = require("../database/models");
 const User = db.Usuario;
 const bcryptjs = require("bcryptjs");
-const e = require("express");
 
 const controladorUser = {
   loginShow: function (req, res) {
