@@ -19,8 +19,9 @@ create table usuarios(
 create table productos(
 
 	id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT, 
-    idusuario INT UNSIGNED NOT NULL,
+    idUsuario INT UNSIGNED NOT NULL,
     imagen VARCHAR(500) NOT NULL,
+    imagen2 VARCHAR(500) NOT NULL,
     nombre VARCHAR(500) NOT NULL,
     descripcion VARCHAR(500) NOT NULL,
     
@@ -28,21 +29,21 @@ create table productos(
     updatedAt  TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     deletedAt TIMESTAMP NULL ON UPDATE CURRENT_TIMESTAMP,
     
-    FOREIGN KEY (idusuario) REFERENCES usuarios(id)
+    FOREIGN KEY (idUsuario) REFERENCES usuarios(id)
 );
 create table comentarios(
 
 	id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT, 
-	idproducto INT UNSIGNED NOT NULL,
-    idusuario INT UNSIGNED NOT NULL,
+	idProducto INT UNSIGNED NOT NULL,
+    idUsuario INT UNSIGNED NOT NULL,
     texto VARCHAR(500) NOT NULL,
     
     createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updatedAt  TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     deletedAt TIMESTAMP NULL ON UPDATE CURRENT_TIMESTAMP,
     
-    FOREIGN KEY (idproducto) REFERENCES productos(id),
-    FOREIGN KEY (idusuario) REFERENCES usuarios(id)
+    FOREIGN KEY (idProducto) REFERENCES productos(id),
+    FOREIGN KEY (idUsuario) REFERENCES usuarios(id)
 );
 
 INSERT INTO usuarios (email, contraseña, fecha, dni, perfil)
@@ -64,7 +65,7 @@ VALUES
 ("natalia.rodriguez@outlook.com", "NatyR#2024", "1997-09-11", 32789145, "profile15.jpg");
 
 
-INSERT INTO productos (idusuario, imagen, nombre, descripcion) VALUES
+INSERT INTO productos (idUsuario, imagen, nombre, descripcion) VALUES
 (1, 'pendrive-sandisk-128gb.webp', 'Pendrive SanDisk Ultra 128GB USB 3.0', 'Almacenamiento rápido y confiable para tus archivos personales, con velocidad de transferencia hasta 10 veces mayor que USB 2.0. Diseñado para ofrecer un rendimiento excepcional, este producto combina durabilidad, eficiencia y una experiencia de usuario sobresaliente. Ideal para usuarios exigentes que valoran calidad y funcionalidad en su día a día.'),
 (1, 'auriculares-jbl-510bt.webp', 'Auriculares Inalámbricos JBL Tune 510BT', 'Auriculares Bluetooth con sonido JBL Pure Bass, batería de hasta 40 horas y carga rápida. Diseñado para ofrecer un rendimiento excepcional, este producto combina durabilidad, eficiencia y una experiencia de usuario sobresaliente. Ideal para usuarios exigentes que valoran calidad y funcionalidad en su día a día.'),
 (2, 'notebook-lenovo-ideapad.webp', 'Notebook Lenovo IdeaPad 3 15.6 Ryzen 5', 'Portátil potente y versátil con procesador AMD Ryzen 5, ideal para trabajo y estudio diario. Diseñado para ofrecer un rendimiento excepcional, este producto combina durabilidad, eficiencia y una experiencia de usuario sobresaliente. Ideal para usuarios exigentes que valoran calidad y funcionalidad en su día a día.'),
@@ -77,7 +78,7 @@ INSERT INTO productos (idusuario, imagen, nombre, descripcion) VALUES
 (5, 'apple-watch-5.webp', 'Apple Watch Series 5 GPS 44mm', 'Versión mejorada con pantalla siempre encendida, brújula integrada y almacenamiento aumentado. Diseñado para ofrecer un rendimiento excepcional, este producto combina durabilidad, eficiencia y una experiencia de usuario sobresaliente. Ideal para usuarios exigentes que valoran calidad y funcionalidad en su día a día.');
 
 
-INSERT INTO comentarios (idproducto, idusuario, texto) VALUES
+INSERT INTO comentarios (idProducto, idUsuario, texto) VALUES
 
 (1, 1, 'Muy útil para llevar documentos, funciona rápido y sin errores.'),
 (1, 2, 'Buena relación calidad-precio, lo uso a diario en el trabajo.'),

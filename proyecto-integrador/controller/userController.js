@@ -1,7 +1,20 @@
 const base = require("../db/base");
-
+const db = require("../database/models");
+const User = db.Usuario;
 const controladorUser = {
     login: function (req, res) {
+      // let relacion = {
+      //       include: [
+      //         {association: "productos", include: [{association: "comentarios"}]},
+      //       ]
+      //   }
+      //   User.findByPk(1, relacion)
+      //       .then(function(resultados){
+      //           return res.send(resultados)
+      //       })
+      //       .catch(function(error){
+      //           return res.send(error);
+      //       })
       return res.render("login", {usuario: base.usuario, logueado: false});
     },
     profile: function (req, res) {
