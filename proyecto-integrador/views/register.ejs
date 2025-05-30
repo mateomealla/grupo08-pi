@@ -36,22 +36,27 @@
 			
 				<div class="login-container">
 					<h2 class="login-title">Registrate</h2>
-					<form action="/user/login" method="get" class="login-form">
+					<% if (error != undefined) { %>
+  						<div class="error-box">
+    						<p class="text-error-box"><%= error %></p>
+  						</div>
+					<% } %>
+					<form action="/user/register" method="POST" class="login-form">
 
 						<label for="email">Email:</label>
-						<input type="email" name="email" id="email" class="form-input" value="" required>
+						<input type="email" name="email" id="email" class="form-input" value="" >
 
 						<label for="usuario">Usuario:</label>
-						<input type="text" name="usuario" id="usuario" class="form-input" value="" required>
+						<input type="text" name="usuario" id="usuario" class="form-input" value="" >
 				  
 						<label for="contraseña">Contraseña:</label>
-						<input type="password" name="contraseña" id="contraseña" class="form-input" value="" required>
+						<input type="password" name="contraseña" id="contraseña" class="form-input" value="" >
 
 						<label for="fecha">Fecha:</label>
-						<input type="date" name="fecha" id="fecha" class="form-input" value="" required>
+						<input type="date" name="fecha" id="fecha" class="form-input" value="" >
 
 						<label for="nroDocumento">Nro de Documento:</label>
-						<input type="number" name="nroDocumento" id="nroDocumento" class="form-input" value="" required>
+						<input type="number" name="nroDocumento" id="nroDocumento" class="form-input" value="" >
 
 						<label for="fotoPerfil">Foto de Perfil:</label>
 						<input type="text" name="fotoPerfil" id="fotoPerfil" class="form-input" value="" >

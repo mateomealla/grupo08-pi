@@ -32,9 +32,14 @@
 
 			<div class="login-container">
 				<h2 class="login-title">Ingresar</h2>
-				<form action="/" method="get" class="login-form">
+				<% if (error != undefined) { %>
+  						<div class="error-box">
+    						<p class="text-error-box"><%= error %></p>
+  						</div>
+					<% } %>
+				<form action="/user/login" method="POST" class="login-form">
 				  <label for="usuario">Usuario:</label>
-				  <input type="email" name="usuario" id="usuario" class="form-input" value="" required>
+				  <input type="email" name="email" id="usuario" class="form-input" value="" required>
 			  
 				  <label for="contraseña">Contraseña:</label>
 				  <input type="password" name="contraseña" id="contraseña" class="form-input" value="" required>

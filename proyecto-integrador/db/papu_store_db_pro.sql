@@ -3,6 +3,7 @@ USE papu_store_db_pro;
 
 create table usuarios(
 	id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(500) NOT NULL,
     email VARCHAR(500) NOT NULL,
     contraseña VARCHAR(500) NOT NULL,
     fecha DATE NOT NULL,
@@ -44,23 +45,24 @@ create table comentarios(
     FOREIGN KEY (idUsuario) REFERENCES usuarios(id)
 );
 
-INSERT INTO usuarios (email, contraseña, fecha, dni, perfil)
+INSERT INTO usuarios (nombre, email, contraseña, fecha, dni, perfil)
 VALUES 
-("julieta.ramirez@gmail.com", "Ramirez2025!", "2000-05-12", 32450128, "profile1.jpg"),
-("tomas.alvarez@hotmail.com", "Tomas_A123", "1998-08-21", 40823917, "profile2.jpg"),
-("caro.peralta@yahoo.com", "Caro.2025#", "2002-03-10", 36792044, "profile3.jpg"),
-("martin.lopez@gmail.com", "Mlopez_89", "1999-11-01", 38015637, "profile4.jpg"),
-("agustina.duarte@outlook.com", "AgustinaD*", "2001-02-15", 34776302, "profile5.jpg"),
-("valentina.rios@gmail.com", "Valen2025!", "1997-03-24", 33123456, "profile6.jpg"),
-("andres.ferreyra@hotmail.com", "Ferreyra_2024", "1995-07-18", 30258741, "profile7.jpg"),
-("mauro.castro@yahoo.com", "MauroC*89", "1994-11-30", 28934567, "profile8.jpg"),
-("luz.benitez@gmail.com", "LuzB#2023", "2000-06-12", 34123456, "profile9.jpg"),
-("dario.gomez@outlook.com", "Dario1234!", "1998-01-25", 31987654, "profile10.jpg"),
-("carla.mendez@gmail.com", "CarlaM_2024", "1999-08-15", 35765432, "profile11.jpg"),
-("ramiro.fernandez@hotmail.com", "RamiroF@2023", "1996-10-05", 31247896, "profile12.jpg"),
-("sabrina.lopez@yahoo.com", "Sabri.2025!", "2001-12-09", 36894512, "profile13.jpg"),
-("franco.molina@gmail.com", "FrancoM*22", "1995-05-28", 29567891, "profile14.jpg"),
-("natalia.rodriguez@outlook.com", "NatyR#2024", "1997-09-11", 32789145, "profile15.jpg");
+("Julieta Ramirez", "julieta.ramirez@gmail.com", "Ramirez2025!", "2000-05-12", 32450128, "profile1.jpg"),
+("Tomas Alvarez", "tomas.alvarez@hotmail.com", "Tomas_A123", "1998-08-21", 40823917, "profile2.jpg"),
+("Caro Peralta", "caro.peralta@yahoo.com", "Caro.2025#", "2002-03-10", 36792044, "profile3.jpg"),
+("Martin Lopez", "martin.lopez@gmail.com", "Mlopez_89", "1999-11-01", 38015637, "profile4.jpg"),
+("Agustina Duarte", "agustina.duarte@outlook.com", "AgustinaD*", "2001-02-15", 34776302, "profile5.jpg"),
+("Valentina Rios", "valentina.rios@gmail.com", "Valen2025!", "1997-03-24", 33123456, "profile6.jpg"),
+("Andres Ferreyra", "andres.ferreyra@hotmail.com", "Ferreyra_2024", "1995-07-18", 30258741, "profile7.jpg"),
+("Mauro Castro", "mauro.castro@yahoo.com", "MauroC*89", "1994-11-30", 28934567, "profile8.jpg"),
+("Luz Benitez", "luz.benitez@gmail.com", "LuzB#2023", "2000-06-12", 34123456, "profile9.jpg"),
+("Dario Gomez", "dario.gomez@outlook.com", "Dario1234!", "1998-01-25", 31987654, "profile10.jpg"),
+("Carla Mendez", "carla.mendez@gmail.com", "CarlaM_2024", "1999-08-15", 35765432, "profile11.jpg"),
+("Ramiro Fernandez", "ramiro.fernandez@hotmail.com", "RamiroF@2023", "1996-10-05", 31247896, "profile12.jpg"),
+("Sabrina Lopez", "sabrina.lopez@yahoo.com", "Sabri.2025!", "2001-12-09", 36894512, "profile13.jpg"),
+("Franco Molina", "franco.molina@gmail.com", "FrancoM*22", "1995-05-28", 29567891, "profile14.jpg"),
+("Natalia Rodriguez", "natalia.rodriguez@outlook.com", "NatyR#2024", "1997-09-11", 32789145, "profile15.jpg");
+
 
 
 INSERT INTO productos (idUsuario, imagen, imagen2, nombre, descripcionCorta, descripcion) VALUES

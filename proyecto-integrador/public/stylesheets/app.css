@@ -463,6 +463,18 @@ textarea.form-input {
   resize: vertical;
   padding: 15px;
 }
+.error-box {
+  color: white;
+  background-color: red;
+  padding: 12px 16px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
 
 /*====== Profile ======*/
 .info-usuario{
