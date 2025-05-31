@@ -41,20 +41,23 @@
 						<a href="/product/details/<%= productos[i].id %>">
 							<figure class="product-box_image">
 								<!-- En esta seccion me aseguro que haya 1 sola imagen, y si hay 2 hacer el efecto -->
-								<img class="imagen1" src="<%= productos[i].imagen[0] %>" alt="<%= productos[i].nombre  %>">
-								<img class="imagen2" src="<%= productos[i].imagen[1] %>" alt="<%= productos[i].nombre  %>">
-																							
+								<img class="imagen1" src="/images/products/<%=productos[i].imagen%>" alt="<%= productos[i].nombre  %>">
+								<% if (productos[i].imagen2 != undefined) { %>
+									<img class="imagen2" src="/images/products/<%=productos[i].imagen2%>" alt="<%= productos[i].nombre  %>">
+								<%} else { %>
+									<img class="imagen2" src="/images/products/<%=productos[i].imagen%>" alt="<%= productos[i].nombre  %>">
+								<% } %>
 								 
 							</figure>
 							<article class="product-box_data">
 								<h2><%= productos[i].nombre %></h2>
 								<p><%= productos[i].descripcionCorta %></p>
-								<p>Comentarios: <%= productos[i].comentarios.length %></p>
+								<p>Comentarios: <%= productos[i].usuario.comentarios.length %></p>
+								<a class="publicuser"  href="/user/profile"><p class="publicuser">Publicado por: <%= productos[i].usuario.email %></p></a>
 							</article>
 						</a>
 					</section>
 				</div>
-
 			 
 			 <% } %>
 			
