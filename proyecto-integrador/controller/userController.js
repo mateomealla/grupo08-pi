@@ -37,11 +37,12 @@ const controladorUser = {
             error: "La contraseña es incorrecta",
           });
         }
+        else{
+          req.session.user = userInfo;
+        }
 
-        req.session.user = user;
-
-        if (userInfo.recordarme) {
-          res.cookie("user", user, { maxAge: 1000 * 60 * 60 }); // 1 hora
+        if (userInfo.recordarme != undefined) {
+          res.cookie("user", userInfo, { maxAge: 1000 * 60 * 60 }); // 1 hora
         }
 
         return res.redirect("/user/profile");
