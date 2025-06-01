@@ -22,24 +22,30 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
+
 app.use(session({
   secret: "papustore",
   resave: false,
   saveUninitialized: true
 }));
 
-app.use(function(req, res, next) {
-  if ( req.session.user != undefined) {
-        res.locals.user = req.session.user;
+app.use(function (req, res, next) {
+ 
+  if (req.session.usuario != undefined) {
+      res.locals.usuario = req.session.usuario;
   }
-  return next();
-});
+  else {
+      res.locals.usuario = undefined;
+   } 
+    return next();
+});  
+
 
 app.use(function(req, res, next) {
 
-  if (req.cookies.user != undefined && req.session.user == undefined) {
-    res.locals.user = req.cookies.user;
-    req.session.user = req.cookies.user;
+  if (req.cookies.usuario != undefined && req.session.usuario == undefined) {
+    res.locals.usuario = req.cookies.usuario;
+    req.session.usuario = req.cookies.usuario;
   }
   
 

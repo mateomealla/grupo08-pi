@@ -2,6 +2,8 @@ const base = require("../db/base");
 const db = require("../database/models");
 const User = db.Usuario;
 const bcryptjs = require("bcryptjs");
+const Producto = db.Producto;
+
 
 const controladorUser = {
   loginShow: function (req, res) {
@@ -38,13 +40,13 @@ const controladorUser = {
           });
         }
         else{
-          req.session.user = userInfo;
+          req.session.usuario = user;
         }
-
+        
         if (userInfo.recordarme != undefined) {
-          res.cookie("user", userInfo, { maxAge: 1000 * 60 * 60 }); // 1 hora
+          res.cookie("usuario", user, { maxAge: 1000 * 60 * 60 }); // 1 hora
         }
-
+          
         return res.redirect("/user/profile");
       })
       .catch(function (err) {
@@ -52,13 +54,34 @@ const controladorUser = {
       });
   },
   profile: function (req, res) {
-    return res.render("profile", {
-      usuario: base.usuario,
-      logueado: true,
-      id: req.params.id,
-      productos: base.productos,
+
+    if (!req.session.usuario) {
+        return res.redirect('/user/login');
+    }  
+    else if (req.session.usuario.id == undefined) {
+        return res.redirect('/user/register');
+    }
+    
+  Producto.findAll({
+        where: { idUsuario: req.session.usuario.id },
+        include: [{ association: "comentarios" }]
+    })
+    .then(function (productos) {
+        res.render("profile", {
+            usuario: req.session.usuario,
+            logueado: true,
+            productos: productos
+        });
+        // return res.send(req.session.usuario);
+    })
+    .catch(function (error) {
+        return res.send(error);
     });
+   
+    
+   
   },
+  
   registerCreate: function (req, res) {
     let error = undefined;
     let email = req.body.email;

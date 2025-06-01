@@ -29,7 +29,7 @@
 	<section class="info-usuario container products-wrapper">
 		<div class="row">
 			<div class="img-container offset-3 col-2">
-				<img src="<%= usuario.fotoDePerfil %>" alt="foto de perfil" class="foto-perfil">
+				<img src="/images/users/<%=  usuario.perfil %>" alt="foto de perfil" class="foto-perfil">
 			</div>
 			<div class="data-container col-6">
 				<div class="d-flex align-items-center ">
@@ -44,9 +44,9 @@
 					<ul class="">
 						<li>Email: <%= usuario.email %></li>
 						<br>
-						<li><%= usuario.productos %> productos</li>
-						<li><%= usuario.seguidores %> seguidores</li>
-						<li><%= usuario.comentarios %> comentarios</li>
+						<li><%= productos.length %> productos</li>
+						<li>536 seguidores </li>
+						<li><%= productos[0].comentarios.length %> comentarios</li>
 					</ul>
 				</div>
 			</div>
