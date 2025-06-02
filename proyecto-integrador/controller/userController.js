@@ -40,7 +40,9 @@ const controladorUser = {
           });
         }
         else{
+
           req.session.usuario = user;
+          // return res.send(req.session.usuario);
         }
         // req.session.usuario = user;
 
@@ -149,7 +151,8 @@ const controladorUser = {
   },
   logout:function (req, res) {
     req.session.destroy();
-    return res.redirect("/user/logout");
+    res.clearCookie("usuario");
+    return res.redirect("/");
 
   },
 };
