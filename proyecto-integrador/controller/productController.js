@@ -56,7 +56,7 @@ const controlador = {
 
   agregarComentario: function(req, res) {
     
-    if (!req.session.usuario) {
+    if (req.session.usuario == undefined) {
       return res.redirect("/user/login");
     }
 

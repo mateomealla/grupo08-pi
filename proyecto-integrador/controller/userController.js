@@ -22,7 +22,7 @@ const controladorUser = {
 
     User.findOne({ where: [{ email: userInfo.email }] })
       .then(function (user) {
-        if (!user) {
+        if (user == undefined) { //null
           return res.render("login", {
             usuario: base.usuario,
             logueado: false,
@@ -32,7 +32,7 @@ const controladorUser = {
 
         // const check = bcryptjs.compareSync(userInfo.password, user.contraseña);
 
-        // if (!check) {
+        // if (check == false) {
         //   return res.render("login", {
         //     usuario: base.usuario,
         //     logueado: false,
@@ -56,7 +56,7 @@ const controladorUser = {
   },
   profile: function (req, res) {
 
-    if (!req.session.usuario) {
+    if (req.session.usuario == undefined) {
         return res.redirect('/user/login');
     }  
     else if (req.session.usuario.id == undefined) {
