@@ -30,19 +30,19 @@ const controladorUser = {
           });
         }
 
-        // const check = bcryptjs.compareSync(userInfo.password, user.contraseña);
+        const check = bcryptjs.compareSync(userInfo.password, user.contraseña);
 
-        // if (check == false) {
-        //   return res.render("login", {
-        //     usuario: base.usuario,
-        //     logueado: false,
-        //     error: "La contraseña es incorrecta",
-        //   });
-        // }
-        // else{
-        //   req.session.usuario = user;
-        // }
-         req.session.usuario = user;
+        if (check == false) {
+          return res.render("login", {
+            usuario: base.usuario,
+            logueado: false,
+            error: "La contraseña es incorrecta",
+          });
+        }
+        else{
+          req.session.usuario = user;
+        }
+        // req.session.usuario = user;
 
         if (userInfo.recordarme != undefined) {
           res.cookie("usuario", user, { maxAge: 1000 * 60 * 60 }); // 1 hora
@@ -59,9 +59,6 @@ const controladorUser = {
     if (req.session.usuario == undefined) {
         return res.redirect('/user/login');
     }  
-    else if (req.session.usuario.id == undefined) {
-        return res.redirect('/user/register');
-    }
     
   Producto.findAll({
         where: { idUsuario: req.session.usuario.id },
@@ -73,7 +70,7 @@ const controladorUser = {
             logueado: true,
             productos: productos
         });
-        // return res.send(req.session.usuario);
+        // return res.send(productos);
     })
     .catch(function (error) {
         return res.send(error);
@@ -149,6 +146,11 @@ const controladorUser = {
       logueado: false,
       error: undefined,
     });
+  },
+  logout:function (req, res) {
+    req.session.destroy();
+    return res.redirect("/user/logout");
+
   },
 };
 

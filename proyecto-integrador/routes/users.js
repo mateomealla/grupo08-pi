@@ -12,6 +12,8 @@ router.get("/profile", controler.profile);
 router.get("/register", controler.registerShow);
 router.post("/register/", controler.registerCreate);
 
+router.post("/logout", controler.logout);
+
 
 
 module.exports = router;

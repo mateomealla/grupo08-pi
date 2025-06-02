@@ -8,7 +8,7 @@ const controladorIndex = {
     Producto.findAll({
       include:[{association: "usuario", include: [{association: "comentarios"}]}],
     }).then(function (productos) {
-      return res.render("index", {usuario: base.usuario, logueado: true, productos: productos});
+      return res.render("index", {logueado: true, productos: productos});
       // return res.send(productos);
     }
     ).catch(function (error) {

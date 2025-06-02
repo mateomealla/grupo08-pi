@@ -18,7 +18,7 @@
 
 <body>
 	<!-- Header -->
-	<% if (logueado != true) { %>
+	<% if (locals.usuario != true) { %>
 		<%- include('./partials/headerNoLogueado.ejs') %>
 	
 	 <% } else { %>

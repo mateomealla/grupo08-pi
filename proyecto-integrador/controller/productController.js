@@ -34,7 +34,6 @@ const controlador = {
     return res.send("No existe ese producto.");
   }
 
-
   var logueado;
   if (req.session.usuario) {
     logueado = true;
