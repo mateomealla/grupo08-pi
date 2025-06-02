@@ -30,19 +30,20 @@ const controladorUser = {
           });
         }
 
-        const check = bcryptjs.compareSync(userInfo.password, user.contraseña);
+        // const check = bcryptjs.compareSync(userInfo.password, user.contraseña);
 
-        if (!check) {
-          return res.render("login", {
-            usuario: base.usuario,
-            logueado: false,
-            error: "La contraseña es incorrecta",
-          });
-        }
-        else{
-          req.session.usuario = user;
-        }
-        
+        // if (!check) {
+        //   return res.render("login", {
+        //     usuario: base.usuario,
+        //     logueado: false,
+        //     error: "La contraseña es incorrecta",
+        //   });
+        // }
+        // else{
+        //   req.session.usuario = user;
+        // }
+         req.session.usuario = user;
+
         if (userInfo.recordarme != undefined) {
           res.cookie("usuario", user, { maxAge: 1000 * 60 * 60 }); // 1 hora
         }

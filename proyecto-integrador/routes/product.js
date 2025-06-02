@@ -3,8 +3,10 @@ var router = express.Router();
 
 const controler = require("../controller/productController");
 
-router.get("/details/:id", controler.index);
+router.get("/details/:id", controler.detalle);
 router.get("/search", controler.search)
 router.get("/productadd", controler.productAdd);
+
+router.post("/details/:id/comentario", controler.agregarComentario);
 
 module.exports = router;
