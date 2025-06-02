@@ -20,7 +20,7 @@ const controlador = {
       });
   },
   productAdd: function (req, res) {
-    return res.render("product-add")
+    return res.render("product-add", {error: undefined});
   },
   productAddCreate: function (req, res) {
     // return res.render("product-add");
@@ -31,21 +31,15 @@ const controlador = {
     let descripcionC = req.body.productDescriptionC;
     let idUsuario = req.session.usuario.id;
 
-    // if (
-    //   req.body.email == "" ||
-    //   req.body.usuario == "" ||
-    //   req.body.fecha == "" ||
-    //   req.body.nroDocumento == ""
-    // ) {
-    //   return res.render("register", {
-    //     error: "Por favor, complete todos los campos",
-    //   });
-    // }
-    // if (req.body.contraseña.length < 3 || req.body.contraseña == "") {
-    //   return res.render("register", {
-    //     error: "La contraseña debe tener al menos 3 caracteres",
-    //   });
-    // }
+    if (
+      nombre == "" ||
+      imagen1 == "" ||
+      descripcion == ""
+    ) {
+      return res.render("product-add", {
+        error: "Por favor, complete los campos obligatorios",
+      });
+    }
     let productoadd = {
       idUsuario: idUsuario,
       imagen: imagen1,

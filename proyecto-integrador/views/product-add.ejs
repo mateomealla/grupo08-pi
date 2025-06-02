@@ -37,12 +37,17 @@
 			<h2 class="col-12">
 				<div class="login-container">
 					<h2 class="login-title">Añadir producto</h2>
-					<form action="/" method="post" class="login-form">
+					<% if (error != undefined) { %>
+  						<div class="error-box">
+    						<p class="text-error-box"><%= error %></p>
+  						</div>
+					<% } %>
+					<form action="/product/productadd" method="post" class="login-form">
 
-						<label for="productName">Nombre del producto:</label>
+						<label for="productName">Nombre del producto:*</label>
 						<input type="text" id="productName" name="productName" class="form-input" value="">
 
-						<label for="productImage">Imagen:</label>
+						<label for="productImage">Imagen:*</label>
 						<input type="text" id="productImage" name="productImage" class="form-input" value="">
 
 
@@ -50,7 +55,7 @@
 						<input type="text" id="productImage2" name="productImage2" class="form-input" value=""> 
 									
 						
-						<label for="productDescription">Descripción:</label>
+						<label for="productDescription">Descripción:*</label>
 						<input type="text" id="productDescription" name="productDescription" class="form-input" value="">
 
 
