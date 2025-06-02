@@ -1,4 +1,3 @@
-const base = require("../db/base");
 const db = require("../database/models");
 const Producto = db.Producto;
 const op = db.Sequelize.Op;

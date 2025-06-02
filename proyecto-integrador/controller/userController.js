@@ -1,4 +1,3 @@
-const base = require("../db/base");
 const db = require("../database/models");
 const User = db.Usuario;
 const bcryptjs = require("bcryptjs");
@@ -8,9 +7,7 @@ const Producto = db.Producto;
 const controladorUser = {
   loginShow: function (req, res) {
     return res.render("login", {
-      usuario: base.usuario,
-      logueado: false,
-      error: undefined,
+      error: undefined
     });
   },
   loginCreate: function (req, res) {
@@ -22,11 +19,9 @@ const controladorUser = {
 
     User.findOne({ where: [{ email: userInfo.email }] })
       .then(function (user) {
-        if (user == undefined) { //null
+        if (user == undefined) { 
           return res.render("login", {
-            usuario: base.usuario,
-            logueado: false,
-            error: "El email no está registrado",
+            error: "El email no está registrado"
           });
         }
 
@@ -34,18 +29,14 @@ const controladorUser = {
 
         if (check == false) {
           return res.render("login", {
-            usuario: base.usuario,
-            logueado: false,
-            error: "La contraseña es incorrecta",
+            error: "La contraseña es incorrecta"
           });
         }
         else{
 
-          req.session.usuario = user;
-          // return res.send(req.session.usuario);
+          req.session.usuario = user; 
         }
-        // req.session.usuario = user;
-
+        
         if (userInfo.recordarme != undefined) {
           res.cookie("usuario", user, { maxAge: 1000 * 60 * 60 }); // 1 hora
         }
@@ -69,10 +60,8 @@ const controladorUser = {
     .then(function (productos) {
         res.render("profile", {
             usuario: req.session.usuario,
-            logueado: true,
             productos: productos
         });
-        // return res.send(productos);
     })
     .catch(function (error) {
         return res.send(error);
@@ -98,15 +87,11 @@ const controladorUser = {
       req.body.nroDocumento == ""
     ) {
       return res.render("register", {
-        usuario: base.usuario,
-        logueado: false,
         error: "Por favor, complete todos los campos",
       });
     }
     if (req.body.contraseña.length < 3 || req.body.contraseña == "") {
       return res.render("register", {
-        usuario: base.usuario,
-        logueado: false,
         error: "La contraseña debe tener al menos 3 caracteres",
       });
     }
@@ -116,8 +101,7 @@ const controladorUser = {
       .then(function (results) {
         if (results) {
           return res.render("register", {
-            usuario: base.usuario,
-            logueado: false,
+
             error: "El email ya está registrado",
           });
         } else {
@@ -144,8 +128,6 @@ const controladorUser = {
   },
   registerShow: function (req, res) {
     return res.render("register", {
-      usuario: base.usuario,
-      logueado: false,
       error: undefined,
     });
   },
