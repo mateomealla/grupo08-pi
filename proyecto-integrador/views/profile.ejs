@@ -29,11 +29,11 @@
 	<section class="info-usuario container products-wrapper">
 		<div class="row">
 			<div class="img-container offset-3 col-2">
-				<img src="/images/users/<%=  usuario.perfil %>" alt="foto de perfil" class="foto-perfil">
+				<img src="/images/users/<%=  locals.usuario.perfil %>" alt="foto de perfil" class="foto-perfil">
 			</div>
 			<div class="data-container col-6">
 				<div class="d-flex align-items-center ">
-					<h1 class="main-title"> <%= usuario.usuario %> 
+					<h1 class="main-title"> <%= locals.usuario.nombre %> 
 						<a href="/user/profile">
 							<i class="fas fa-cog"></i>
 						</a>
@@ -42,11 +42,10 @@
 				</div>
 				<div>
 					<ul class="">
-						<li>Email: <%= usuario.email %></li>
+						<li>Email: <%= locals.usuario.email %></li>
 						<br>
 						<li><%= productos.length %> productos</li>
-						<li>536 seguidores </li>
-						<li><%= productos[0].comentarios.length %> comentarios</li>
+						<li>536 seguidores </li>					
 					</ul>
 				</div>
 			</div>
@@ -79,8 +78,7 @@
 							<article class="product-box_data">
 								<h2><%= productos[i].nombre %></h2>
 								<p><%= productos[i].descripcionCorta %></p>
-								<p>Comentarios: <%= productos[i].comentarios.length %></p>
-								<a class="publicuser"  href="/user/profile"><p class="publicuser">Publicado por: <%= usuario.email %></p></a>
+								<a class="publicuser"  href="/user/profile"><p class="publicuser">Publicado por: <%= locals.usuario.email %></p></a>
 							</article>
 						</a>
 					</section>

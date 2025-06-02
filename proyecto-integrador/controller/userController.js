@@ -72,7 +72,6 @@ const controladorUser = {
   },
   
   registerCreate: function (req, res) {
-    let error = undefined;
     let email = req.body.email;
     let username = req.body.usuario;
     let password = req.body.contraseña;
