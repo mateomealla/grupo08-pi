@@ -48,7 +48,9 @@ const controladorUser = {
   },
   profile: function (req, res) {
     if (req.session.usuario == undefined) {
-      return res.redirect("/user/login");
+      return res.render("login", {
+        error: "Debe iniciar sesión para ver al perfil",
+      });
     }
 
     Producto.findAll({
