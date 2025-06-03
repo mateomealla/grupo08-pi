@@ -23,7 +23,6 @@ const controlador = {
     return res.render("product-add", {error: undefined});
   },
   productAddCreate: function (req, res) {
-    // return res.render("product-add");
     let nombre = req.body.productName;
     let imagen1 = req.body.productImage;
     let imagen2 = req.body.productImage2;
@@ -50,7 +49,7 @@ const controlador = {
     };
     Producto.create(productoadd)
       .then(function (results) {
-        return res.redirect("/");
+        return res.redirect("/user/profile");
       })
       .catch(function (err) {
         return res.send(err);
@@ -64,10 +63,6 @@ const controlador = {
       ],
     })
       .then(function (producto) {
-        if (producto == undefined) {
-          return res.send("No existe ese producto.");
-        }
-
         res.render("product", {
           producto: producto,
         });
@@ -80,7 +75,7 @@ const controlador = {
 
   agregarComentario: function (req, res) {
     if (req.session.usuario == undefined) {
-      return res.redirect("/user/login");
+      return res.render("login", {error: "Debe iniciar sesión para comentar"});
     }
 
     Comentario.create({

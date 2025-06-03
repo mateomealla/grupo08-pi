@@ -2,12 +2,13 @@ const db = require("../database/models");
 const User = db.Usuario;
 const bcryptjs = require("bcryptjs");
 const Producto = db.Producto;
-
+const Comentario = db.Comentario;
+const op = db.Sequelize.Op;
 
 const controladorUser = {
   loginShow: function (req, res) {
     return res.render("login", {
-      error: undefined
+      error: undefined,
     });
   },
   loginCreate: function (req, res) {
@@ -19,9 +20,9 @@ const controladorUser = {
 
     User.findOne({ where: [{ email: userInfo.email }] })
       .then(function (user) {
-        if (user == undefined) { 
+        if (user == undefined) {
           return res.render("login", {
-            error: "El email no está registrado"
+            error: "El email no está registrado",
           });
         }
 
@@ -29,18 +30,16 @@ const controladorUser = {
 
         if (check == false) {
           return res.render("login", {
-            error: "La contraseña es incorrecta"
+            error: "La contraseña es incorrecta",
           });
+        } else {
+          req.session.usuario = user;
         }
-        else{
 
-          req.session.usuario = user; 
-        }
-        
         if (userInfo.recordarme != undefined) {
           res.cookie("usuario", user, { maxAge: 1000 * 60 * 60 }); // 1 hora
         }
-          
+
         return res.redirect("/user/profile");
       })
       .catch(function (err) {
@@ -48,36 +47,34 @@ const controladorUser = {
       });
   },
   profile: function (req, res) {
-
     if (req.session.usuario == undefined) {
-        return res.redirect('/user/login');
-    }  
-    
-  Producto.findAll({
-        where: { idUsuario: req.session.usuario.id },
-        include: [{ association: "comentarios" }]
-    })
-    .then(function (productos) {
-      if (productos.comentarios == undefined){
-        productos.comentarios = [];
-      }
-        res.render("profile", {
-          
-            productos: productos,
-            comentarios: productos.comentarios
+      return res.redirect("/user/login");
+    }
 
-            
-        });
-        // res.send(productos)
+    Producto.findAll({
+      where: { idUsuario: req.session.usuario.id },
+      include: [{ association: "comentarios" }],
     })
-    .catch(function (error) {
+      .then(function (productos) {
+        User.findAll({
+          where: { id: req.session.usuario.id },
+          include: [{ association: "comentarios" }],
+        })
+          .then(function (usuarios) {
+            res.render("profile", {
+              productos: productos,
+              comentarios: usuarios[0].comentarios,
+            });
+          })
+          .catch(function (error) {
+            return res.send(error);
+          });
+      })
+      .catch(function (error) {
         return res.send(error);
-    });
-   
-    
-   
+      });
   },
-  
+
   registerCreate: function (req, res) {
     let email = req.body.email;
     let username = req.body.usuario;
@@ -107,7 +104,6 @@ const controladorUser = {
       .then(function (results) {
         if (results) {
           return res.render("register", {
-
             error: "El email ya está registrado",
           });
         } else {
@@ -137,29 +133,29 @@ const controladorUser = {
       error: undefined,
     });
   },
-  logout:function (req, res) {
+  logout: function (req, res) {
     req.session.destroy();
     res.clearCookie("usuario");
     return res.redirect("/");
-
   },
 
-profileById: function (req, res) {
- 
-  let id = req.params.id; 
+  profileById: function (req, res) {
+    let id = req.params.id;
 
-  User.findByPk(id, { include: [{ association: "productos" } ,{ association: "comentarios" }] })
-    .then(function (otroUsuario) {
-      return res.render("otroProfile", {
-        otroUsuario: otroUsuario,    
-        productos: otroUsuario.productos,
-        comentarios: otroUsuario.comentarios
-      });
+    User.findByPk(id, {
+      include: [{ association: "productos" }, { association: "comentarios" }],
     })
-    .catch(function (error) {
-      return res.send(error);
-    });
-  }
+      .then(function (otroUsuario) {
+        return res.render("otroProfile", {
+          otroUsuario: otroUsuario,
+          productos: otroUsuario.productos,
+          comentarios: otroUsuario.comentarios,
+        });
+      })
+      .catch(function (error) {
+        return res.send(error);
+      });
+  },
 };
 
 module.exports = controladorUser;
