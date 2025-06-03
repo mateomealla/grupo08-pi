@@ -43,7 +43,7 @@
 				<div>
 					<ul class="">
 						<li>Email: <%= locals.usuario.email %></li>
-						<br>
+						<li><%= comentarios.length %> comentarios</li>
 						<li><%= productos.length %> productos</li>
 						<li>536 seguidores </li>					
 					</ul>
@@ -67,7 +67,7 @@
 						<a href="/product/details/<%= productos[i].id %>">
 							<figure class="product-box_image">
 								<img class="imagen1" src="/images/products/<%=productos[i].imagen%>" alt="<%= productos[i].nombre  %>">
-								<% if (productos[i].imagen2 != undefined) { %>
+								<% if (productos[i].imagen2 != "") { %>
 									<img class="imagen2" src="/images/products/<%=productos[i].imagen2%>" alt="<%= productos[i].nombre  %>">
 								<%} else { %>
 									<img class="imagen2" src="/images/products/<%=productos[i].imagen%>" alt="<%= productos[i].nombre  %>">
@@ -75,11 +75,14 @@
 								
 														  
 							</figure>
+							
 							<article class="product-box_data">
 								<h2><%= productos[i].nombre %></h2>
 								<p><%= productos[i].descripcionCorta %></p>
-								<a class="publicuser"  href="/user/profile"><p class="publicuser">Publicado por: <%= locals.usuario.email %></p></a>
+								<p>Comentarios: <%= productos[i].comentarios.length %></p>
+								<a class="publicuser"  href="/user/profile/<%= locals.usuario.id %>"><p class="publicuser">Publicado por: <%= locals.usuario.email %></p></a>
 							</article>
+
 						</a>
 					</section>
 				</div>

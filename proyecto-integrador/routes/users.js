@@ -8,6 +8,7 @@ router.get("/login", controler.loginShow);
 router.post("/login/", controler.loginCreate);
 
 router.get("/profile", controler.profile);
+router.get("/profile/:id", controler.profileById);
 
 router.get("/register", controler.registerShow);
 router.post("/register/", controler.registerCreate);

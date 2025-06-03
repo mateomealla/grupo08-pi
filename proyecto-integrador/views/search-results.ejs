@@ -42,7 +42,7 @@
 							<figure class="product-box_image">
 								<!-- En esta seccion me aseguro que haya 1 sola imagen, y si hay 2 hacer el efecto -->
 								<img class="imagen1" src="/images/products/<%=productos[i].imagen%>" alt="<%= productos[i].nombre  %>">
-								<% if (productos[i].imagen2 != undefined) { %>
+								<% if (productos[i].imagen2 != "") { %>
 									<img class="imagen2" src="/images/products/<%=productos[i].imagen2%>" alt="<%= productos[i].nombre  %>">
 								<%} else { %>
 									<img class="imagen2" src="/images/products/<%=productos[i].imagen%>" alt="<%= productos[i].nombre  %>">

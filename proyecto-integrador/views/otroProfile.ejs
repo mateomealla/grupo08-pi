@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+ <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link width="" rel="shortcut icon" href="/images/logosolo.svg" />
+	
+	<title> Papu Store</title>
+	<!-- Font Awesome Stylesheet -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+	<!-- Bootstrap Grid Stylesheet -->
+	<link rel="stylesheet" href="/stylesheets/bootstrap-grid.min.css" />
+	<!-- Own Stylesheet -->
+	<link rel="stylesheet" href="/stylesheets/app.css" />
+</head>
+<body>
+ 
+  <% if (usuario == undefined) { %>
+    <%- include('./partials/headerNoLogueado.ejs') %>
+  <% } else { %>
+    <%- include('./partials/headerLogueado.ejs') %>
+  <% } %>
+
+
+  <section class="info-usuario container products-wrapper">
+    <div class="row">
+      <div class="img-container offset-3 col-2">
+        <img src="/images/users/<%=  otroUsuario.perfil %>" alt="foto de perfil" class="foto-perfil">
+      </div>
+      <div class="data-container col-6">
+        <div class="d-flex align-items-center ">
+          <h1 class="main-title"> <%= otroUsuario.nombre %> </h1>
+          <a class="btn mt-3 ml-4" href="">SEGUIR</a>
+        </div>
+        <div>
+          <ul class="">
+            <li>Email: <%= otroUsuario.email %></li>
+            <li><%= comentarios.length %> comentarios</li>
+            <li><%= productos.length %> productos</li>
+            <li>536 seguidores </li>         
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <div class="container products-wrapper">
+    <div class="row">
+      <div class="col-12">
+        <h2 class="products-title">Mis productos</h2>
+      </div>
+    
+      <% for( let i = 0; i < productos.length; i++ ) { %>
+        <div class="col-12 col-sm-6 col-lg-3">
+          <section class="product-box">
+            <a href="/product/details/<%= productos[i].id %>">
+              <figure class="product-box_image">
+                <img class="imagen1" src="/images/products/<%=productos[i].imagen%>" alt="<%= productos[i].nombre  %>">
+                <% if (productos[i].imagen2 != "") { %>
+                  <img class="imagen2" src="/images/products/<%=productos[i].imagen2%>" alt="<%= productos[i].nombre  %>">
+                <% } else { %>
+                  <img class="imagen2" src="/images/products/<%=productos[i].imagen%>" alt="<%= productos[i].nombre  %>">
+                <% } %>
+              </figure>
+              
+              <article class="product-box_data">
+								<h2><%= productos[i].nombre %></h2>
+								<p><%= productos[i].descripcionCorta %></p>
+								<p>Comentarios: <%= otroUsuario.comentarios.length %></p>
+								<a class="publicuser"  href="/user/profile/<%= otroUsuario.id %>"><p class="publicuser">Publicado por: <%= otroUsuario.email %></p></a>
+							</article>
+            </a>
+          </section>
+        </div>
+      <% } %>
+    </div>
+  </div>
+  
+
+  
+  <%- include('./partials/footer.ejs') %>
+  
+</body>  
+</html>

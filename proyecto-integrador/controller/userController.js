@@ -58,10 +58,17 @@ const controladorUser = {
         include: [{ association: "comentarios" }]
     })
     .then(function (productos) {
+      if (productos.comentarios == undefined){
+        productos.comentarios = [];
+      }
         res.render("profile", {
-            usuario: req.session.usuario,
-            productos: productos
+          
+            productos: productos,
+            comentarios: productos.comentarios
+
+            
         });
+        // res.send(productos)
     })
     .catch(function (error) {
         return res.send(error);
@@ -136,6 +143,23 @@ const controladorUser = {
     return res.redirect("/");
 
   },
+
+profileById: function (req, res) {
+ 
+  let id = req.params.id; 
+
+  User.findByPk(id, { include: [{ association: "productos" } ,{ association: "comentarios" }] })
+    .then(function (otroUsuario) {
+      return res.render("otroProfile", {
+        otroUsuario: otroUsuario,    
+        productos: otroUsuario.productos,
+        comentarios: otroUsuario.comentarios
+      });
+    })
+    .catch(function (error) {
+      return res.send(error);
+    });
+  }
 };
 
 module.exports = controladorUser;

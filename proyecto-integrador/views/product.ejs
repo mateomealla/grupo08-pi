@@ -38,7 +38,7 @@
 				<article class="col-12 col-lg-8 product-detail-info">
 					<figure class="product-detail-image-wrapper">
 						<img class="imagen1" src="/images/products/<%=producto.imagen%>" alt="<%= producto.nombre  %>">
-								<% if (producto.imagen2 != undefined) { %>
+								<% if (producto.imagen2 != "") { %>
 									<img class="imagen2" src="/images/products/<%=producto.imagen2%>" alt="<%= producto.nombre  %>">
 								<%} else { %>
 									<img class="imagen2" src="/images/products/<%=producto.imagen%>" alt="<%= producto.nombre  %>">
