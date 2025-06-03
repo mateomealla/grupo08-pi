@@ -20,7 +20,11 @@ const controlador = {
       });
   },
   productAdd: function (req, res) {
-    return res.render("product-add", {error: undefined});
+    if (req.session.usuario == undefined) {
+      return res.redirect("/");
+    } else {
+      return res.render("product-add", { error: undefined });
+    }
   },
   productAddCreate: function (req, res) {
     let nombre = req.body.productName;
@@ -30,11 +34,7 @@ const controlador = {
     let descripcionC = req.body.productDescriptionC;
     let idUsuario = req.session.usuario.id;
 
-    if (
-      nombre == "" ||
-      imagen1 == "" ||
-      descripcion == ""
-    ) {
+    if (nombre == "" || imagen1 == "" || descripcion == "") {
       return res.render("product-add", {
         error: "Por favor, complete los campos obligatorios",
       });
@@ -75,7 +75,9 @@ const controlador = {
 
   agregarComentario: function (req, res) {
     if (req.session.usuario == undefined) {
-      return res.render("login", {error: "Debe iniciar sesión para comentar"});
+      return res.render("login", {
+        error: "Debe iniciar sesión para comentar",
+      });
     }
 
     Comentario.create({

@@ -7,9 +7,13 @@ const op = db.Sequelize.Op;
 
 const controladorUser = {
   loginShow: function (req, res) {
-    return res.render("login", {
-      error: undefined,
-    });
+    if (req.session.usuario != undefined) {
+      return res.redirect("/user/profile");
+    } else {
+      return res.render("login", {
+        error: undefined,
+      });
+    }
   },
   loginCreate: function (req, res) {
     let userInfo = {
@@ -131,9 +135,13 @@ const controladorUser = {
       });
   },
   registerShow: function (req, res) {
-    return res.render("register", {
-      error: undefined,
-    });
+    if (req.session.usuario != undefined) {
+      return res.redirect("profile");
+    } else {
+      return res.render("register", {
+        error: undefined,
+      });
+    }
   },
   logout: function (req, res) {
     req.session.destroy();
