@@ -34,7 +34,7 @@ app.use(function (req, res, next) {
   if (req.session.usuario != undefined) {
       res.locals.usuario = req.session.usuario;
   }
-  
+
     return next();
 });  
 

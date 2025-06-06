@@ -33,6 +33,11 @@
 			<div class="col-12">
 				<h2 class="products-title">Resultados de búsqueda</h2>
 			</div>
+			<% if (error != undefined) { %>
+  						<div class="error-box">
+    						<p class="text-error-box"><%= error %></p>
+  						</div>
+					<% } %>
 			<!-- Show the "ultimos" products -->
 			<% for( let i = 0; i < productos.length; i++ ) { %>
 
@@ -52,7 +57,7 @@
 							<article class="product-box_data">
 								<h2><%= productos[i].nombre %></h2>
 								<p><%= productos[i].descripcionCorta %></p>
-								<p>Comentarios: <%= productos[i].usuario.comentarios.length %></p>
+								<p>Comentarios: <%= productos[i].comentarios.length %></p>
 								<a class="publicuser"  href="/user/profile"><p class="publicuser">Publicado por: <%= productos[i].usuario.email %></p></a>
 							</article>
 						</a>

@@ -8,12 +8,19 @@ const controlador = {
     Producto.findAll({
       where: [{ nombre: { [op.like]: `%${req.query.search}%` } }],
       include: [
-        { association: "usuario", include: [{ association: "comentarios" }] },
-      ],
+        { association: "usuario" },
+        { association: "comentarios" }
+      ]
     })
       .then(function (resultados) {
-        return res.render("search-results", { productos: resultados });
-        // return res.send(resultados);
+        if (resultados.length == 0) {
+          return res.render("search-results", { productos: resultados, error: "No se encontraron resultados" });
+        }
+        else{
+            // return res.send(resultados);
+        return res.render("search-results", { productos: resultados, error: undefined });
+        }
+      
       })
       .catch(function (error) {
         return res.send(error);

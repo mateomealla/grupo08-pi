@@ -10,9 +10,7 @@ const controladorUser = {
     if (req.session.usuario != undefined) {
       return res.redirect("/user/profile");
     } else {
-      return res.render("login", {
-        error: undefined,
-      });
+      return res.render("login", {error: undefined});
     }
   },
   loginCreate: function (req, res) {
@@ -45,6 +43,7 @@ const controladorUser = {
         }
 
         return res.redirect("/user/profile");
+        // return res.send(user)
       })
       .catch(function (err) {
         return res.send(err);
@@ -105,7 +104,7 @@ const controladorUser = {
       });
     }
     User.findOne({
-      where: { email: req.body.email },
+      where: [{ email: req.body.email }],
     })
       .then(function (results) {
         if (results) {
@@ -136,7 +135,7 @@ const controladorUser = {
   },
   registerShow: function (req, res) {
     if (req.session.usuario != undefined) {
-      return res.redirect("profile");
+      return res.redirect("/user/profile");
     } else {
       return res.render("register", {
         error: undefined,
