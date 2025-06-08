@@ -10,7 +10,7 @@ const controladorUser = {
     if (req.session.usuario != undefined) {
       return res.redirect("/user/profile");
     } else {
-      return res.render("login", {error: undefined});
+      return res.render("login", { error: undefined });
     }
   },
   loginCreate: function (req, res) {
@@ -55,28 +55,22 @@ const controladorUser = {
         error: "Debe iniciar sesión para ver al perfil",
       });
     }
-
-    Producto.findAll({
-      where: { idUsuario: req.session.usuario.id },
-      include: [{ association: "comentarios" }],
+    User.findAll({
+      where: { id: req.session.usuario.id },
+      include: [
+        { association: "comentarios" },
+        { association: "productos", include: [{ association: "comentarios" }] },
+      ],
     })
-      .then(function (productos) {
-        User.findAll({
-          where: { id: req.session.usuario.id },
-          include: [{ association: "comentarios" }],
-        })
-          .then(function (usuarios) {
-            res.render("profile", {
-              productos: productos,
-              comentarios: usuarios[0].comentarios,
-            });
-          })
-          .catch(function (error) {
-            return res.send(error);
-          });
+      .then(function (usuarios) {
+        res.render("profile", {
+          productos: usuarios[0].productos,
+          comentarios: usuarios[0].comentarios,
+        });
+        // return res.send(usuarios)
       })
       .catch(function (error) {
-        return res.send(error);
+        return error;
       });
   },
 
@@ -152,7 +146,10 @@ const controladorUser = {
     let id = req.params.id;
 
     User.findByPk(id, {
-      include: [{ association: "productos", include:[{association: "comentarios"}] }, { association: "comentarios" }],
+      include: [
+        { association: "productos", include: [{ association: "comentarios" }] },
+        { association: "comentarios" },
+      ],
     })
       .then(function (otroUsuario) {
         return res.render("otroProfile", {
