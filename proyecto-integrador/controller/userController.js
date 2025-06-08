@@ -152,7 +152,7 @@ const controladorUser = {
     let id = req.params.id;
 
     User.findByPk(id, {
-      include: [{ association: "productos" }, { association: "comentarios" }],
+      include: [{ association: "productos", include:[{association: "comentarios"}] }, { association: "comentarios" }],
     })
       .then(function (otroUsuario) {
         return res.render("otroProfile", {

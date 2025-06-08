@@ -70,7 +70,7 @@
               <article class="product-box_data">
 								<h2><%= productos[i].nombre %></h2>
 								<p><%= productos[i].descripcionCorta %></p>
-								<p>Comentarios: <%= otroUsuario.comentarios.length %></p>
+								<p>Comentarios: <%= productos[i].comentarios.length %></p>
 								<a class="publicuser"  href="/user/profile/<%= otroUsuario.id %>"><p class="publicuser">Publicado por: <%= otroUsuario.email %></p></a>
 							</article>
             </a>
